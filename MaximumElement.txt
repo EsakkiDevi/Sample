@@ -1,0 +1,291 @@
+import java.util.*;
+class MaximumElement
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,k=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n-1;i++)
+        {
+            if(arr[i]>arr[i+1])
+            {
+                k=arr[i+1];
+                arr[i+1]=arr[i];
+                arr[i]=k;
+            }
+        }
+        System.out.println("The maximum Element in the array is:"+arr[n-1]);
+    }
+}
+//------------------------------------------------------------
+class MinimumElement
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,k=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n-1;i++)
+        {
+            if(arr[i]>arr[i+1])
+            {
+                k=arr[i+1];
+                arr[i+1]=arr[i];
+                arr[i]=k;
+            }
+        }
+        System.out.println("The minimum Element in the array is:"+arr[0]);
+    }
+}
+//----------------------------------------------------------------
+class Average
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,sum=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+        }
+        int avg=sum/n;
+        System.out.println("The Average of array is:"+avg);
+    }
+}
+//------------------------------------------------------------------
+class Counting
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,count=0,count1=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n;i++)
+        {
+            if(arr[i]%2==0)
+            {
+                count++;
+            }
+            else
+            {
+                count1++;
+            }
+        }
+        System.out.println("Count of Even Numbers:"+count);
+        System.out.println("Count of Odd Numbers:"+count1);
+    }
+}
+//------------------------------------------------------------------
+class SecondLarge
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,k=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n-1;i++)
+        {
+            if(arr[i]>arr[i+1])
+            {
+                k=arr[i+1];
+                arr[i+1]=arr[i];
+                arr[i]=k;
+            }
+        }
+        System.out.println("The Second Largest Element in the array is:"+arr[n-2]);
+    }
+}
+//-------------------------------------------------------------------------------------
+class Evenindexsum
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,Sum=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n;i++)
+        {
+            if(i%2==0)
+            {
+               Sum=Sum+arr[i];
+            }
+        }
+        System.out.println("The Sum of even Indices in the array :"+Sum);
+    }
+}
+//---------------------------------------------------------------------------------------
+class Merge
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int i=0,k=0;
+        System.out.println("Enter the no of Elements in array1:");
+        int n=sc.nextInt();
+        
+        int arr1[]=new int[n];
+        System.out.println("Enter the array1 elements:");
+        for(i=0;i<n;i++)
+        {
+            arr1[i]=sc.nextInt();
+        }
+        System.out.println("Enter the no of Elements in array2:");
+        int n1=sc.nextInt();
+        
+        int arr2[]=new int[n1];
+        System.out.println("Enter the array2 elements:");
+        for(i=0;i<n;i++)
+        {
+            arr2[i]=sc.nextInt();
+        }
+        int arr3[]=new int[n+n1];
+        for(i=0;i<n;i++)
+        {
+            arr3[i]=arr1[i];
+        }
+        for(i=0;i<n1;i++)
+        {
+            arr3[n]=arr2[i];
+            n++;
+        }
+        System.out.println("The Merged Array");
+        for(i=0;i<arr3.length;i++)
+        System.out.print(arr3[i]+" ");
+    }
+}
+//---------------------------------------------------
+class Sorting
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,k=0,j=0;
+        int arr[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n-1;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+            if(arr[i]>arr[j])
+            {
+                k=arr[j];
+                arr[j]=arr[i];
+                arr[i]=k;
+            }
+        }
+
+        }
+        System.out.println("Sorted Array:");
+        for(i=0;i<n;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+    }
+}
+
+
+
+//---------------------------------------------------------------
+class RemoveDuplicates
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int i=0,k=0,j=0;
+        int index=0;
+        int arr[]=new int[n];
+        
+        System.out.println("Enter the array elements:");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        for(i=0;i<n;i++)
+        {
+           for(j=0;j<i;j++)
+          {  
+            if(arr[i]==arr[j])
+            {
+                break;
+            }
+          }
+            if(j==i)
+            {  
+                arr[index]=arr[i];
+                index++;
+            }
+        }  
+        System.out.println("Remove Duplicate Elements in Array");
+        for(i=0;i<index;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+
+    }
+}
+//-----------------------------------------------------------------------------------
+class Frequency {
+    public static void main(String[] args) {
+      int[] arr = {1,1,1,6};
+      int[] freq = new int[arr.length];
+  
+      for (int i = 0; i < arr.length; i++) {
+        freq[i] = 1;
+        for (int j = 0; j < i; j++) {
+          if (arr[i] == arr[j]) {
+            freq[i] = freq[j] + 1;
+            freq[j] = 0;
+          }
+        }
+      }
+  
+      for (int i = 0; i < arr.length; i++) {
+        if (freq[i] != 0) {
+          System.out.println( arr[i] + " -> " + freq[i]);
+        }
+      }
+    }
+  }
+  
