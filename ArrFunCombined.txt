@@ -1,0 +1,584 @@
+import java.util.*;
+class AverrageArray
+{
+    public static void main(String args[])
+    {
+        int i,j;
+     Scanner sc=new Scanner(System.in);
+     System.out.println("Enter the Row and Coloum Size:");
+     int row=sc.nextInt();
+     int col=sc.nextInt();
+     int arr[][]=new int[row][col];
+     System.out.println("Enter the Array Elements:");
+     for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+            arr[i][j]=sc.nextInt();
+        }
+     }
+     Aver(arr,row,col);
+    }
+    public static void Aver( int arr[][], int row,int col)
+    {
+     int i,j;
+      double Average,Sum=0;
+     for(i=0;i<row;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            Sum=Sum+arr[i][j];
+        }
+    }
+    Average=Sum/(row*col);
+    
+    System.out.println("Average of Elements:"+Average);
+
+    }
+}
+//--------------------------------------------------------------------------------
+class MatrixAddition
+{
+    public static void main(String[] args) {
+    int i,j;
+     Scanner sc=new Scanner(System.in);
+     System.out.println("Enter the Row and Coloum Size:");
+     int row=sc.nextInt();
+     int col=sc.nextInt();
+     int mat1[][]=new int[row][col];
+     System.out.println("Enter the Matrix 1 Elements:");
+     for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+            mat1[i][j]=sc.nextInt();
+        }
+     }
+     int mat2[][]=new int[row][col];
+     System.out.println("Enter the Matrix 2 Elements:");
+     for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+            mat2[i][j]=sc.nextInt();
+        }
+     }
+     Addition(mat1,mat2,row,col);
+
+
+}
+public static void Addition(int mat1[][],int mat2[][],int row,int col)
+ {
+    int i,j;
+    int Add[][]=new int[row][col];
+    for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+            Add[i][j]=mat1[i][j] +mat2[i][j];
+        }
+     }
+     System.out.println("Additon Matrix");
+     for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+           System.out.print(Add[i][j]+" ");
+        }
+        System.out.println("");
+     } 
+    }
+    
+}
+//----------------------------------------------------------------------------------------
+class MatrixMulti
+{
+public static void main(String[] args) {
+    int i,j;
+     Scanner sc=new Scanner(System.in);
+     System.out.println("Enter the Row and Coloum Size(Matrix 1):");
+     int row1=sc.nextInt();
+     int col1=sc.nextInt();
+     int mat1[][]=new int[row1][col1];
+     System.out.println("Enter the Matrix 1 Elements:");
+     for(i=0;i<row1;i++)
+     {
+        for(j=0;j<col1;j++)
+        {
+            mat1[i][j]=sc.nextInt();
+        }
+     }
+     System.out.println("Enter the Row and Coloum Size(Matrix 2):");
+     int row2=sc.nextInt();
+     int col2=sc.nextInt();
+     int mat2[][]=new int[row2][col2];
+     System.out.println("Enter the Matrix 2 Elements:");
+     for(i=0;i<row2;i++)
+     {
+        for(j=0;j<col2;j++)
+        {
+    
+            mat2[i][j]=sc.nextInt();
+        }
+     }
+     Multi(mat1,mat2,row1,col2,row2,col2);
+    }
+    public static void Multi(int mat1[][],int mat2[][],int row1,int col1,int row2,int col2 )
+    {
+        int i,j,k;
+        int Multi[][]=new int[row1][col2];
+        if (col1 != row2)
+         {
+            System.out.println("Matrices not compatible for multiplication");
+         } 
+        else 
+         {
+            
+            System.out.println("The Multiplied Matrix C:");
+            for (i = 0; i < row1; i++) {
+            
+                for ( j = 0; j < col2; j++)
+                 {
+                    Multi[i][j] = 0; 
+                    for (k = 0; k < col1; k++)
+                     {
+                        Multi[i][j] += mat1[i][k] * mat2[k][j];  
+                     }
+                    System.out.print(Multi[i][j] + "  ");
+                   
+                 }
+                 System.out.println("");
+                
+            }
+           
+        }    
+    }
+}
+    
+//--------------------------------------------------------------------------------------
+class  Transpose
+{
+    public static void main(String args[])
+    {
+        int i,j;
+     Scanner sc=new Scanner(System.in);
+     System.out.println("Enter the Row and Coloum Size:");
+     int row=sc.nextInt();
+     int col=sc.nextInt();
+     int mat[][]=new int[row][col];
+     System.out.println("Enter the Matrix Elements:");
+     for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+            mat[i][j]=sc.nextInt();
+        }
+     }
+  Transpose(mat,row,col);
+    }
+    public static void Transpose(int mat[][],int row,int col)
+     {
+        int i,j;
+        System.out.println("Transpose Matrix");
+        for(i=0;i<col;i++)
+        {
+            for(j=0;j<row;j++)
+            {
+                System.out.print(mat[j][i]+"  ");
+            }
+            System.out.println("");
+        }
+        
+    }
+}
+//-------------------------------------------------------
+class MaxArray
+{
+    public static void main(String args[])
+    {
+        int i,j;
+     Scanner sc=new Scanner(System.in);
+     System.out.println("Enter the Row and Coloum Size:");
+     int row=sc.nextInt();
+     int col=sc.nextInt();
+     int mat[][]=new int[row][col];
+     System.out.println("Enter the Matrix Elements:");
+     for(i=0;i<row;i++)
+     {
+        for(j=0;j<col;j++)
+        {
+            mat[i][j]=sc.nextInt();
+        }
+     }
+     Maximum(mat,row,col);
+    }
+    public static void Maximum(int mat[][],int row,int col)
+    {
+        int i,j;
+        int maxi=mat[0][0];
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+                if(maxi<mat[i][j])
+                {
+                    maxi=mat[i][j];
+                }
+            }
+        }
+        System.out.println("Maximum Element in Matrix is "+maxi);
+
+    }
+
+}
+//-------------------------------------------------------------------------------------------------
+class Position
+{
+    public static void main(String[] args)
+     {
+        int i,j;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Row and Coloum Size:");
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        int mat[][]=new int[row][col];
+        System.out.println("Enter the Matrix Elements:");
+        for(i=0;i<row;i++)
+        {
+           for(j=0;j<col;j++)
+           {
+               mat[i][j]=sc.nextInt();
+           }
+        }
+        position(mat,row,col);
+
+        
+    }
+    public static void position(int mat[][],int row,int col)
+    {
+        int i,j;
+        Scanner s=new Scanner(System.in);
+        System.out.println("Enter the Element:");
+        int x=s.nextInt();
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+        
+        {
+          if(mat[i][j]==x)
+          {
+            
+            System.out.println(x+" present in the position  "+ ((col*i)+j));
+          
+            return;
+          }
+        }
+    }
+          
+    System.out.println("The Element not found");
+    
+    }
+}
+//-------------------------------------------------------------------------------------------------------
+class ReverseMatrix
+{
+    public static void main(String[] args)
+     {
+        int i,j;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Row and Coloum Size:");
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        int mat[][]=new int[row][col];
+        System.out.println("Enter the Matrix Elements:");
+        for(i=0;i<row;i++)
+        {
+           for(j=0;j<col;j++)
+           {
+               mat[i][j]=sc.nextInt();
+           }
+        }
+        Reverse(mat,row,col);
+     }
+     public static void Reverse(int mat[][],int row,int col)
+     {
+        int i,j;
+        System.out.println("Reversed Matrix");
+        for(i=row-1;i>=0;i--)
+        {
+            for(j=col-1;j>=0;j--)
+            {
+                System.out.print(mat[i][j]+" ");
+            }
+            System.out.println("");
+        }
+     }
+}
+//--------------------------------------------------------------------------------
+class RotateMatrix
+{
+    public static void main(String[] args) {
+        int i,j;
+        int n=2;
+        int mat[][]=new int[n][n];
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the matrix Elements");
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                mat[i][j]=sc.nextInt();
+            }
+        }
+        Rotate(mat,n);
+
+    }
+    public static void Rotate(int mat[][],int n) {
+        int i,j;
+        int rotate[][]=new int[n][n];
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                rotate[j][2-i-1]=mat[i][j];
+            }
+           
+        }
+        System.out.println("90 Degree Rotated Matrix");
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                System.out.print(rotate[i][j]+" ");
+            }
+            System.out.println("");
+        }
+
+        
+    }
+}
+//-----------------------------------------------------------------------------------
+class MergeArray
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int i=0,k=0;
+        System.out.println("Enter the no of Elements in array1:");
+        int n=sc.nextInt();
+        
+        int arr1[]=new int[n];
+        System.out.println("Enter the array1 elements:");
+        for(i=0;i<n;i++)
+        {
+            arr1[i]=sc.nextInt();
+        }
+        System.out.println("Enter the no of Elements in array2:");
+        int n1=sc.nextInt();
+        
+        int arr2[]=new int[n1];
+        System.out.println("Enter the array2 elements:");
+        for(i=0;i<n;i++)
+        {
+            arr2[i]=sc.nextInt();
+        }
+        Merge(arr1,arr2,n,n1);
+    }
+    public static void Merge(int arr1[],int arr2[],int n1,int n2)
+    {
+        int i,j;
+        int merge[]=new int[n1+n2];
+        for(i=0;i<n1;i++)
+        {
+            merge[i]=arr1[i];
+        }
+        for(i=0;i<n2;i++)
+        {
+           merge[n1]=arr2[i];
+            n1++;
+        }
+        System.out.println("The Merged Array");
+        for(i=0;i<merge.length;i++)
+        System.out.print(merge[i]+" ");
+    }
+}
+//----------------------------------------------------------------
+class SumDiagonal
+{
+    public static void main(String[] args) {
+        int i,j;
+        
+        
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of row and coloumn");
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        int mat[][]=new int[row][col];
+        System.out.println("Enter the matrix Elements");
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+                mat[i][j]=sc.nextInt();
+            }
+        }
+        SumofDiagonal(mat,row,col);
+    }
+    public static void SumofDiagonal(int mat[][],int row,int col)
+    {
+        int i, j;
+        int Sum=0;
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+                if(i==j)
+                {
+                    Sum=Sum+mat[i][j];
+                }
+            }
+        }
+         System.out.println("Sum of Diagonal Element:"+Sum);
+    }
+}
+//----------------------------------------------------------------------------------------
+class SumRow
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc=new Scanner(System.in); 
+        System.out.println("Enter the no of rows & coloumns:");
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        int i,j;
+        int[][] mat=new int[row][col];
+        System.out.println("Enter Matrix Element");
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+             
+              mat[i][j]=sc.nextInt();
+            }
+        } 
+        SumofRow(mat,row,col);
+    }
+    public static void SumofRow(int mat[][],int row,int col) 
+    {
+        
+        int i,j;
+         System.out.print("Row Sums= ");
+        for(i=0;i<row;i++)
+        {
+            int Rowsum=0;
+            for(j=0;j<col;j++)
+            {
+                Rowsum+=mat[i][j];
+
+            }
+           System.out.print(Rowsum+" ");
+        }
+    }
+
+}
+
+//-----------------------------------------------------------------------------------------
+class SpiralTraverse
+
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc=new Scanner(System.in); 
+        System.out.println("Enter the no of rows & coloums:");
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        int i,j;
+        int[][] mat=new int[row][col];
+        System.out.println("Enetr Matrix Element");
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+             
+              mat[i][j]=sc.nextInt();
+            }
+        } 
+        SpiralTraversal(mat,row,col);
+    }
+    public static void SpiralTraversal(int A[][],int row,int col)
+    {
+        int i,j;
+
+        int top = 0, left = 0, bottom = row - 1, right = col - 1;       
+        System.out.println("Spiral Traversal of the Matrix:");
+        while (top <= bottom && left <= right)
+         {            
+            for ( i = left; i <= right; i++) 
+            {
+                System.out.print(A[top][i] + " ");
+            }
+            top++;            
+            for ( i = top; i <= bottom; i++)
+            {
+                System.out.print(A[i][right] + " ");
+            }
+            right--;
+            if (top <= bottom)
+            {
+            for ( i = right; i >= left; i--)
+            {
+                System.out.print(A[bottom][i] + " ");
+            }
+            bottom--; 
+            if (left <= right)
+            {
+            for ( i = bottom; i >= top; i--) 
+            {
+                System.out.print(A[i][left] + " ");
+            }
+            left++; 
+            }
+        }
+    }
+}
+}
+//------------------------------------------------------------------------
+class CountEvenOdd
+{
+    public static void main(String[] args) 
+    {
+        int i;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no of Elements");
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter the Array Elements");
+        for(i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+    Counting(arr,n);
+        
+    }
+    public static void Counting(int a[],int n)
+    {
+        int i,counteven=0,countodd=0;
+        for(i=0;i<n;i++)
+        {
+          if(a[i]%2==0)
+          {
+            counteven++;
+          }
+          else
+          {
+            countodd++;
+          }
+        
+        }
+        System.out.println("Count of Even numbers: "+counteven);
+        System.out.println("Count of Odd numbers: "+countodd);
+        
+    }
+
+    }
+
+
