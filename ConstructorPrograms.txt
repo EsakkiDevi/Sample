@@ -1,0 +1,330 @@
+import java.util.*;//Constructor Programs
+class Cat
+{
+ String name;
+ int age;
+ Cat()
+ {
+    this.name="Unknown";
+    this.age=5;
+    System.out.println("Name:"+name);
+    System.out.println("Age:"+age);
+ }
+ public static void main(String args[])
+ {
+    Cat c=new Cat();   
+ }
+}
+//--------------------------------------------------------------------------
+class Dog
+{
+    String name;
+    String color;
+    Dog(String name,String color)
+    {
+        this.name=name;
+        this.color=color;
+        System.out.println("Name: "+name);
+        System.out.println("Color: "+color);
+    }
+    public static void main(String args[])
+    {
+        Dog D=new Dog("Hardik","White");
+        Dog d1=new Dog("Max","Black");//give multiple values with multiple objects
+    }
+    
+}
+//---------------------------------------------------------------------------------------
+class Books
+{
+    String title,author ;
+    int price;
+    Books()
+    {
+        Display();
+    }
+    Books(String title,String author)
+    {
+        this.title=title;
+        this.author=author;
+        Display();
+    }
+     Books(String title,String author,int price)
+    {
+        this.title=title;
+        this.author=author;
+        this.price=price;
+        Display();
+    }
+    void Display(){
+        System.out.println("Name of the Title:"+title);
+        System.out.println("Name of the Author:"+author);
+        System.out.println("Cost of Price:"+price);
+    }
+    public static void main(String[] args) 
+    {
+        //Books b=new Books();
+        Books B=new Books("HarryPotter","J.K.Rowling");
+        Books B1=new Books("Crime Fiction","J.K.Rowling",200);
+    }
+
+    
+}
+//-------------------------------------------------------------------------
+class Student
+{
+    int studentID;
+    String StudentName;
+    char grade;
+    Student()
+    {
+       Display();
+    }
+    Student(int studentID,String StudentName,char grade)
+    {
+        this.studentID=studentID;
+        this.StudentName=StudentName;
+        this.grade=grade;
+        Display();
+    }
+    void Display()
+    {
+        System.out.println("Student ID number:"+studentID);
+        System.out.println("Student Name:"+StudentName);
+        System.out.println("Student Grade:"+grade);
+    }
+
+        public static void main(String[] args) 
+    {
+     Student s=new Student(101,"Devi",'A');
+     Student s1=new Student(102,"Thiru",'C');
+    }
+    
+}
+//-------------------------------------------------------------------------------------------------------------------
+
+
+class Bookk 
+{
+    String title;
+    String author;
+    String isbn;
+    // Constructor to initialize Bookk objects
+    Bookk(String title, String author, String isbn) 
+    {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        Displayadd();
+    }
+
+    
+    void Displayadd() 
+    {
+        System.out.println("Book Added:\tTitle: " + title + "\tAuthor: " + author + "\tISBN: " + isbn);
+    }
+
+    
+    void Display() 
+    {
+        System.out.println("\tTitle: " + title + "\tAuthor: " + author + "\tISBN: " + isbn);
+    }
+
+    
+    public static void RemoveBook(List<Bookk> books, String isbnnumber)
+    {
+       
+        for (int i = 0; i < books.size(); i++) 
+        {
+            Bookk book = books.get(i);
+            
+            if (book.isbn.equals(isbnnumber)) 
+            {
+                books.remove(i);
+                System.out.println("Removed Book:\tTitle: " + book.title + "\tAuthor: " + book.author + "\tISBN: " + book.isbn);
+                return; 
+            }
+        }
+        System.out.println("Book with ISBN " + isbnnumber + " not found.");
+    }
+
+    public static void main(String[] args)  //*** Main Class
+    {
+        List<Bookk> books = new ArrayList<>(); // Creating an ArrayList with obj        
+        Bookk k1 = new Bookk("Kavithaigal", "Bharathiyar", "9788183450331");
+        Bookk k2 = new Bookk("Sarppa Viyugam", "Rajeshkumar", "9781685639129");
+        Bookk k3 = new Bookk("Tamil Nadu", "V Muthuraman", "9788174364593");
+
+        books.add(k1);
+        books.add(k2);
+        books.add(k3); // Adding  to the ArrayList
+
+        System.out.println("Books in the library:");
+        for (Bookk book : books) 
+        {
+            book.Display(); 
+        }
+
+        System.out.println("\nRemoving a Book:");
+        RemoveBook(books, "9781685639129");
+
+        System.out.println("\nRemaining Books:");
+        for (Bookk book : books) 
+        {
+            book.Display(); 
+        }
+    }
+}
+
+
+
+//------------------------------------------------------------------
+class Account
+{
+    String acno;
+    double balance;
+    Account(String acno,double balance)
+    {
+        this.acno=acno;
+        this.balance=balance;
+        if(acno==null || acno.isEmpty())
+        {
+            System.err.println("Error:The Acoount could not be Null and Empty");
+            return;
+        }
+        if(balance<0)
+        {
+            System.err.println("Error:Balance could not be Negative");
+            return;
+        }
+        Display();
+
+
+    }
+    void Display()
+    {
+        System.out.println("Account Number: "+acno);
+        System.out.println("Balance: "+balance);
+    }
+    public static void main(String[] args) 
+    {
+        Account A=new Account("3610456789",20000);
+        Account A1=new Account(null,8500) ;
+        Account A2=new Account("79896578493",-2000);
+        
+    }
+}
+//-------------------------------------------------------------------------------------
+class Car
+{
+    String make;
+    String model;
+    int year;
+    Car(String make,String model,int year)
+    {
+        this.make=((make==null||make.isEmpty())?"Unknown Make":make);
+        
+        this.model=((model==null||model.isEmpty())?"Unknown Model":model);
+        
+        this.year=((year<0)? 2000:year);
+        Display();
+
+    }
+    void Display()
+        {
+            System.out.println("Making of car :"+make);
+            System.out.println("Model of car: "+model);
+            System.out.println("Establish Year :"+year);
+        }
+    public static void main(String[] args)
+     {
+        Car c1=new Car("Tata","Nexon",2002);
+        Car c2=new Car("","",2019);
+        Car c3=new Car("Toyoto","Maruti",-198);
+
+    }
+}
+//-------------------------------------------------------------------------
+class Point
+{
+    Point(int x,int y)
+    {
+        System.out.println("Integer Values X:"+x+" Y:"+y);
+    }
+    Point(double x,double y)
+    {
+        System.out.println("Double values X:"+x+" Y:"+y);
+    }
+
+public static void main(String[] args) 
+{
+    Point p1=new Point(8,7);
+    Point p2=new Point(6.00,30.00);
+
+}
+}
+//-----------------------------------------------------------------------------
+class Classroom
+{
+    String Classname;
+    String[] student=new String[5];
+    Classroom(String Classname,String student[])
+    {
+        this.Classname=Classname;
+        this.student=student;
+        Display();
+    }  
+    void Display()
+    {  
+       System.out.println("Classname: "+Classname);
+       System.out.print("Students Name: ");
+       for(String stu:student)
+       {
+        System.out.print(stu+" ");
+       }
+    }
+    public static void main(String[] args) 
+    {
+        String[] studentlist={"abi","bala","devi","muthu","mani"};
+        String[] studentlist1={"anu","banu","esanth","mary","priya"};
+        Classroom r1=new Classroom("6th std",studentlist);
+        Classroom r2=new Classroom("9th std",studentlist1);
+    }
+}
+//---------------------------------------------------------------------------------------------------------
+ class Singleton {
+    // Static instance of the class
+    private static Singleton instance;
+
+    // Private constructor to prevent instantiation
+    private Singleton() {}
+
+    // Method to get the instance of the class
+    public static Singleton getInstance() 
+    {
+        if (instance == null) 
+        {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    public void showMessage() 
+    {
+        System.out.println("Singleton instance created");
+    }
+}
+class MainSingleton
+{
+    public static void main(String[] args) 
+    {
+        Singleton singleton1 = Singleton.getInstance();
+        Singleton singleton2 = Singleton.getInstance();
+
+        // Both singleton1 and singleton2 will point to the same instance
+        System.out.println(singleton1 == singleton2); // Output: true
+        System.out.println(singleton1);
+
+        singleton1.showMessage();
+    }
+}

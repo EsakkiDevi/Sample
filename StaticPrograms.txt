@@ -1,0 +1,165 @@
+//STATIC Programs
+class Counter 
+{
+    static int count=0;
+    Counter()
+    {
+      count++;
+    }
+    static void display()
+    {
+        System.out.println("Count:"+count);
+    }
+    public static void main(String args[])
+    {
+        Counter c1=new Counter();
+        Counter c2=new Counter();
+        Counter c3=new Counter();
+        Counter c4=new Counter();
+        Counter c5=new Counter();
+        Counter.display();
+        
+    }
+}
+//------------------------------------------------------------------------------------------------------------
+class Mathutility
+{
+    static int add(int num1,int num2)
+    {
+        return num1+num2;
+    }
+    public static void main(String[] args) 
+    {
+        int a=89;
+        int b=63;
+        int Sum=Mathutility.add(a,b);
+        System.out.println("Addition of two numbers:"+Sum);
+        
+    }
+}
+//-----------------------------------------------------------------------------------------------------------
+class Initializer
+{
+    static  int Initialvalue;
+    static  //static block
+    {
+    Initialvalue=1000;
+    System.out.println("Static Block Initial Value :"+Initialvalue);
+
+    }
+    public static void main(String[] args) 
+    {
+        System.out.println("Before obj  Initial Value:"+Initialvalue);
+        Initializer in=new Initializer();
+        System.out.println("After obj  Initial Value:"+Initialvalue);
+    }
+}
+//------------------------------------------------------------------------------------------------------------
+class Constants 
+{
+    static final double PI=3.14159;
+    static double area(double r)
+    {
+        double area=PI*r*r;
+        return area; 
+    }
+    public static void main(String[] args) 
+    {
+         double radius=9;
+         double result=Constants.area(radius); 
+         System.out.println("Area:"+result );
+    }
+}
+//----------------------------------------------------------------------------------------------------------------
+class ComplexInitializer
+{
+    static int x;
+    static int y;
+    static int z;
+    static
+        {
+          x=10;
+          y=20;
+          z=calculate(x,y);
+
+        }
+        static int calculate(int x, int y)
+        {
+            return x*y+(x+y);
+           
+        }
+    
+        public static void main(String[] args)
+         {
+            System.out.println("X:"+x);
+            System.out.println("Y:"+y);
+            System.out.println("Z:"+z);
+            
+        }
+    }
+    //----------------------------------------------------------------------------------------------
+class  Configuration
+{
+    static String configValue;
+    static
+    {
+        configValue="This is a block statement";
+    }
+    public static void main(String[] args) {
+        System.out.println("Config Value:"+configValue);
+    }
+
+}
+//----------------------------------------------------------------------------------------------------------
+class IDGenerator
+{
+    static int nextID=111;
+    static int generate()
+    {
+         return nextID++;
+    }
+    public static void main(String[] args) 
+    {
+        int Result=IDGenerator.generate();
+        System.out.println("The 1st ID:"+IDGenerator.generate());   
+        System.out.println("The 2nd ID:"+IDGenerator.generate());  
+        System.out.println("The 3rd ID:"+IDGenerator.generate()); 
+
+    }
+}
+//------------------------------------------------------------------------------------------------------
+class BankAccount
+{
+     String accountNumber;
+     double balance;
+    static String bankName;
+    static double interestRate;
+     
+    BankAccount(String accountNumber,double balance)
+    {
+        this.accountNumber=accountNumber;
+        this.balance=balance;
+    }
+    static void Set(String Name,double Rate)
+    {
+        bankName=Name;
+        interestRate=Rate;
+    }
+     void Display()
+    {
+        System.out.println("Bankname:"+bankName);
+        System.out.println("InterestRate:"+ interestRate);
+        System.out.println("Account Number:"+accountNumber);
+        System.out.println("Balance:"+balance);
+    }
+    public static void main(String[] args) 
+    {
+        BankAccount.Set("Indian Bank",12.5);
+        BankAccount b1=new BankAccount("1234567890",50000);
+        BankAccount b2=new BankAccount("9876543210",55000);
+        b1.Display();
+        System.out.println("");
+        b2.Display();        
+    }   
+}
+//---------------------------------------------------------------------------------------------------------
