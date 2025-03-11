@@ -113,7 +113,7 @@ public static void main(String[] args) {
      int col2=sc.nextInt();
      int mat2[][]=new int[row2][col2];
      System.out.println("Enter the Matrix 2 Elements:");
-     for(i=0;i<row2;i++)
+     for(i=0;/i<row2;i++)
      {
         for(j=0;j<col2;j++)
         {

@@ -1,0 +1,27 @@
+import java.io.*;
+
+class Update {
+    public static void main(String[] args) {
+        String data = ""; // Stores entire file content
+
+        try {
+            // Read the file first
+            BufferedReader br = new BufferedReader(new FileReader("students.csv"));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                data += line.replace("1,John,20", "1,John,21") + "\n"; // Update John's age
+            }
+            br.close(); // Close the reader first
+
+            // Now write the updated content back to the file
+            BufferedWriter bw = new BufferedWriter(new FileWriter("students.csv"));
+            bw.write(data);
+            bw.close(); // Close the writer to save changes
+
+            System.out.println("Updated Successfully");
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
