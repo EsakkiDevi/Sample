@@ -157,8 +157,6 @@ class Update
                 data += line.replace("1,John,20", "1,John,21") + "\n";
             }
             br.close(); 
-
-           
             BufferedWriter bw = new BufferedWriter(new FileWriter("students.csv"));
             bw.write(data);
             bw.close(); 
@@ -171,5 +169,3 @@ class Update
         }
     }
 }
-//-------------------------------------------------------------------------------------------------------
-
