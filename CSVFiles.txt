@@ -160,7 +160,6 @@ class Update
             BufferedWriter bw = new BufferedWriter(new FileWriter("students.csv"));
             bw.write(data);
             bw.close(); 
-
             System.out.println("Updated Successfully");
         } 
         catch (Exception e) 
