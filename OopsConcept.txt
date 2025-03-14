@@ -1,0 +1,544 @@
+import java.util.*;
+class Student//Encapsulation
+{
+    String name;
+    int age;
+    char Grade;
+    public void set(String name,int age,char Grade)
+    {
+        this.name=name;
+        this.age=age;
+        this.Grade=Grade;
+    }
+    public String Getname()
+    {
+        return name;
+    }
+    public int Getage()
+    {
+        return age;
+    }
+    public char GetGrade()
+    {
+        return Grade;
+    }
+
+   
+}
+class OOPs1
+{
+    public static void main(String[] args)
+    {
+        Student S=new Student();
+        S.set("Devi",21,'A');
+        System.out.println("Student Name:"+S.Getname());
+        System.out.println("Age:"+S.Getage());
+        System.out.println("Grade:"+S.GetGrade());
+
+
+    }
+
+}
+//---------------------------------------------------------------------------------------
+class Book//Constructor
+{
+    String Title;
+    String Author;
+    double Price;
+    Book(String Title,String Author,double Price)
+    {
+        this.Title=Title;
+        this.Author=Author;
+        this.Price=Price;
+    }
+    public void Display()
+    {
+        System.out.print("Title: "+Title+"\t");
+        System.out.print("Author: "+Author+"\t");
+        System.out.print("Price: $"+Price+"\t");
+    }
+
+}
+class OOPs2
+{
+    public static void main(String args[])
+    {
+        Book B=new Book("Programming Basics","Alice",25.99);
+        B.Display();
+    }
+}
+//-----------------------------------------------------------------------------------
+class Employee//encapsulation
+{
+    String emp_name;
+    String position;
+    double salary;
+    public void set(String emp_name,String position,double salary)
+    {
+        this.emp_name=emp_name;
+        this.position=position;
+        this.salary=salary;
+    }
+    public String getname()
+    {
+        return emp_name;
+
+    }
+    public String getpos()
+    {
+        return position;
+    }
+    public double getsalary()
+    {
+        return salary;
+    }
+
+}
+class OOPs3
+{
+    public static void main(String args[])
+    {
+        Employee E=new Employee();
+        E.set("Thangom","HR",30000.24);
+        System.out.println("Employee Name: "+E.getname());
+        System.out.println("Position: "+E.getpos());
+        System.out.println("Salary: "+E.getsalary());
+    }
+}
+//------------------------------------------------------------------------------------------------------
+class Rectangle//Constructor
+{
+    double length;
+    double width;
+    Rectangle(double length,double width)
+    {
+        this.length=length;
+        this.width=width;
+    }
+    public double area()
+    {
+        return 0.5*length*width;
+    }
+    public double perimeter()
+    {
+        return 2*(length+width);
+    }
+
+}
+class OOPs4
+{
+    public static void main(String[] args) {
+        Rectangle R=new Rectangle(20.5,15);
+        System.out.println("Area : "+R.area());
+        System.out.println("Perimeter : "+R.perimeter());
+        
+    }
+}
+//--------------------------------------------------------------------------------------
+class Circle//Encapsulation
+{
+    double PI=3.14;
+    double radius;
+    public void set(double radius)
+    {
+        this.radius=radius;
+    }
+    public double calarea()
+    {
+        return PI*radius*radius;
+
+    }
+    public double calcircumference()
+    {
+        return 2*PI*radius;
+
+    }
+
+
+}
+class OOPs5
+
+{
+    public static void main(String[] args) {
+        Circle C=new Circle();
+    
+        C.set(13);
+        System.out.println("Area : "+C.calarea());
+        System.out.println("Circumference : "+C.calcircumference());
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+
+class Bank
+{
+        private String ac_no;
+        private String ac_name;
+        private double  bal;
+
+    
+    public void set(String ac_no,String ac_name)
+    {
+         this.ac_no=ac_no;
+         this.ac_name=ac_name;
+        
+
+    }
+    public void setbal(double bal)
+    {
+        this.bal=bal;
+        
+    }
+    public double get()
+    {
+        return bal;
+    }
+}
+class OOPs6
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int option;
+        Bank B=new Bank();
+        B.set("1223456","Devi");
+        B.setbal(1000);
+
+
+        do{
+            System.out.println("Enter the option\n1.deposit\n2.withsraw\n3.exit");
+            option=sc.nextInt();
+            switch(option)
+            {
+                case 1:
+                System.out.println("Enter the ammount to deposit:");
+                double amount=sc.nextDouble();
+                System.out.println("Deposit Amount:"+amount);
+                double x=B.get()+amount;
+                System.out.println("Balance:"+x);
+                B.setbal(x);
+                break;
+                case 2:
+                System.out.println("Enter the amount to withdraw;");
+                 amount= sc.nextDouble();
+                 System.out.println("Withdraw Amount:"+amount);
+                 if(B.get()<500  ||  B.get()-amount <= 500)
+                 {
+                    System.out.println("Unsufficient Amount");
+                 }
+                 else
+                 {
+                 
+                 x=B.get()-amount;
+                 System.out.println("Balnce:"+x);
+                 B.setbal(x);
+                 }
+                break;
+                case 3:
+                System.out.println("Exit");
+                break;
+                default:
+                System.out.println("Invalid Option");
+                break;
+            }
+        }
+        while(option!=3);
+            }
+        }
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------
+class Car//encapsulation
+{
+    String make;
+    String model;
+    int year;
+
+    public void set(String make,String model, int year)
+    {
+        this.make=make;
+        this.model=model;
+        this.year=year;
+
+    }
+    public String getmake()
+    {
+        return make;
+    }
+    public String getmodel()
+    {
+        return model;
+
+    }
+    public int getyear()
+    {
+        return year;
+    }
+}
+class OOPs7
+{
+    public static void main(String[] args) {
+        Car C=new Car();
+        C.set("Toyoto","Corolla",2020);
+        System.out.println(C.getmake()+" "+C.getmodel()+" ("+C.getyear()+")");
+
+    }
+}
+//---------------------------------------------------------------------------------------
+class Product//constructor
+{
+    String name;
+    int quantity;
+    int price;
+    Product(String name,int quantity,int price )
+    {
+        this.name=name;
+        this.quantity=quantity;
+        this.price=price;
+    }
+    public void Display()
+    {
+        System.out.print("Product : "+name+" , Quantity: "+quantity+" , Price: $"+price+"\n");
+    }
+
+}
+class OOPs8
+{
+    public static void main(String[] args) {
+        Product P=new Product("Laptop",50,800);
+        P.Display();
+        
+        Product P1=new Product("KeyBoard",50,200);
+        P1.Display();
+    }
+}
+//---------------------------------------------------------------------------------------------------------------
+class Library//constructor
+{
+    String title;
+    String author;
+    boolean availability;
+    Library(String title,String author,boolean availability)
+    {
+        this.title=title;
+        this.author=author;
+        this.availability=availability;
+    }
+    public void Display()
+    {
+        System.out.println("Book: "+title+" by "+author+" "+(availability==true?"(Available)":"(Not Available)"));
+    }
+
+}
+
+class OOPs9
+{
+    public static void main(String[] args) {
+        Library L=new Library("Data Science","Jane Doe",false);
+        L.Display();
+
+        
+    }
+
+
+}
+//---------------------------------------------------------------------------------------
+class Marks//encapsulation
+{
+    int math;
+    int science;
+    int english;
+    public void Set(int math,int science,int english)
+    {
+        this.math=math;
+        this.science=science;
+        this.english=english;
+    }
+    public int Average()
+    {
+        return (math+science+english)/3;
+    }    
+}
+class OOPs10
+{
+    public static void main(String[] args) {
+        Marks M=new Marks();
+        M.Set(70,90,80);
+        System.out.println("Average Mark: "+M.Average());
+        
+    }
+}
+//-----------------------------------------------------------------------------------
+class Travel//constructor
+{
+    String destination;
+    int days;
+    int cost;
+    Travel(String destination,int days,int cost)
+    {
+        this.destination=destination;
+        this.days=days;
+        this.cost=cost;
+    }
+    public void display()
+    {
+        System.out.println("Package: "+destination+", "+days+" Days, $"+cost);
+    }
+
+}
+class OOPs11
+{
+    public static void main(String[] args) {
+        Travel t=new Travel("Paris",7,1500);
+        t.display();
+
+        Travel t1=new Travel("Dubai",15,2500);
+        t1.display();
+        
+    }
+}
+//-----------------------------------------------------------------------------------------------
+class Bill//encapsulation
+{
+    String item_name;
+    int quantity;
+    int price_1unit;
+    public void set(String item_name,int quantity,int price_1unit)
+    {
+    this.item_name=item_name;
+    this.quantity=quantity;
+    this.price_1unit=price_1unit;
+    }
+    public int Total()
+    {
+        return quantity*price_1unit;
+
+    }
+
+}
+class OOPs12
+{
+    public static void main(String[] args) {
+        Bill B=new Bill();
+        B.set("Pen",10,2);
+        System.out.println("Total Price: $"+B.Total());
+        
+    }
+}
+//----------------------------------------------------------------
+
+
+class AddressBook 
+{
+    String name;
+    String phoneNumber;
+
+    public AddressBook(String name, String phoneNumber)
+     {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void display()
+     {
+        System.out.println("Name: " + name + " | Phone: " + phoneNumber);
+    }
+}
+
+class Contact extends AddressBook
+ {
+    public Contact(String name, String phoneNumber) 
+    {
+        super(name, phoneNumber);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Contact: " + name + " - " + phoneNumber);
+    }
+}
+
+class Search 
+{
+    public void display(String searchName, ArrayList<Contact> contactList)
+     {
+        boolean found = false;
+        for (Contact contact : contactList)
+         {
+            if (contact.name.equalsIgnoreCase(searchName)) 
+            {
+                System.out.println("Contact details found:");
+                contact.display();
+                found = true;
+                break;
+            }
+        }
+        if (!found) 
+        {
+            System.out.println("Contact details not found.");
+        }
+    }
+}
+
+ class OOPs13 
+{
+    public static void main(String[] args) 
+    {
+        ArrayList<Contact> contactList = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int option;
+
+        do
+         {
+            System.out.println("\nEnter the option:\n1. Add Contact\n2. View All Contacts\n3. Search Contact\n4. Exit");
+            option = sc.nextInt();
+            sc.nextLine();  // Consume newline
+
+            switch (option) 
+            {
+                case 1:
+                    System.out.print("Enter the name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Enter the phone number: ");
+                    String phone = sc.nextLine();
+                    contactList.add(new Contact(name, phone));
+                    System.out.println("Contact added successfully.");
+                    break;
+
+                case 2:
+                    System.out.println("\nViewing All Contacts:");
+                    if (contactList.isEmpty()) 
+                    {
+                        System.out.println("No contacts available.");
+                    } else {
+                        for (Contact contact : contactList) 
+                        {
+                            contact.display();
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter the name to search: ");
+                    String searchName = sc.nextLine();
+                    Search search = new Search();
+                    search.display(searchName, contactList);
+                    break;
+
+                case 4:
+                    System.out.println("Exiting program.");
+                    break;
+
+                default:
+                    System.out.println("Invalid Option. Please enter a valid choice.");
+                    break;
+            }
+        } while (option != 4);
+
+        sc.close();
+    }
+}
