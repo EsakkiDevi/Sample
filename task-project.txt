@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ece0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 400px;
+            background-color: #fafafa;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .top-icons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .right-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .icon {
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin: 5px;
+        }
+        .task-list {
+            margin: 1rem 0;
+            /* Added styles for scrollbar */
+            overflow-y: auto;
+            max-height: 200px; /* Adjust this value as needed */
+            padding-right: 0.5rem; /* To prevent content from being hidden by the scrollbar */
+        }
+        /* Style the scrollbar for WebKit browsers (Chrome, Safari) */
+        .task-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .task-list::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+            border-radius: 4px;
+        }
+        .task-list::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+        .task-list::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        /* Style the scrollbar for Firefox */
+        .task-list {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+        .task input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .task span {
+            flex-grow: 1;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .search-bar {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+        .search-icon {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            color: #666;
+            cursor: pointer;
+        }
+        .hamburger-menu {
+            position: relative;
+        }
+        .hamburger-lists {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 0.5rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            left: 0;
+            top: 2.5rem;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 200px; /* Added min width for better appearance */
+        }
+        .hamburger-lists.show {
+            display: flex;
+        }
+        .hamburger-lists div {
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .hamburger-lists div:last-child {
+            border-bottom: none;
+        }
+        .hamburger-lists ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .hamburger-lists li {
+            padding: 0.2rem 0;
+        }
+        .hamburger-icon{
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-icons">
+            <div class="hamburger-menu">
+                <span class="icon hamburger-icon" onclick="toggleHamburger()">&#9776;</span>
+                <div class="hamburger-lists">
+                    <div><b>Completed Tasks: </b><ul id="completed-list"></ul></div>
+                    <div><b>Incomplete Tasks:</b> <ul id="incomplete-list"></ul></div>
+                </div>
+            </div>
+            <div class="right-icons">
+                <span class="icon" onclick="addTask()">&#10133;</span>
+                <span class="icon" onclick="deleteTask()">🗑️</span>
+                <span class="icon" onclick="completeTask()">&#10004;</span>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search tasks..." oninput="searchTasks()">
+            <span class="search-icon" onclick="searchTasks()">&#128269;</span>
+        </div>
+        <div class="task-list" id="taskList">
+        </div>
+        <div id="no-results" style="display: none; text-align: center; margin-top: 10px;">Not Found</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------------------------
+
+// script.js
+let tasks = [];
+
+function renderTasks() {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = '';
+    const searchInput = document.querySelector('.search-bar').value.toLowerCase();
+    let foundTasks = tasks;
+
+    if (searchInput) {
+        foundTasks = tasks.filter(task => task.text.toLowerCase().includes(searchInput));
+    }
+
+    foundTasks.forEach(task => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = 'task';
+        taskDiv.innerHTML = `
+            <input type="checkbox" ${task.completed ? 'checked' : ''} ${task.completed ? '' : 'onchange="toggleComplete(this, ' + task.id + ')"'}>
+            <span>${task.text}</span>
+            ${task.completed ? '' : `<span class="icon" onclick="editTask(${task.id}, '${task.text}')">&#9998;</span>`}
+        `;
+        taskList.appendChild(taskDiv);
+    });
+
+    document.getElementById('no-results').style.display = foundTasks.length > 0 ? 'none' : 'block';
+    updateHamburger();
+}
+
+function addTask() {
+    const taskText = prompt('Enter task:');
+    if (taskText) {
+        fetch('/tasks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: taskText, completed: false })
+        })
+        .then(response => response.json())
+        .then(newTask => {
+            tasks.push(newTask);
+            renderTasks();
+        });
+    }
+}
+
+function deleteTask() {
+    const completedTasksToDelete = tasks.filter(task => task.completed && document.querySelector(`#taskList input[type="checkbox"][${task.completed ? 'checked' : ''}]`).checked);
+    completedTasksToDelete.forEach(task => {
+        fetch(`/tasks?id=${task.id}`, { method: 'DELETE' })
+            .then(() => {
+                tasks = tasks.filter(t => t.id !== task.id);
+                renderTasks();
+            });
+    });
+}
+
+function completeTask() {
+    const selectedTasks = tasks.filter(task => !task.completed && document.querySelector(`#taskList input[type="checkbox"]:not(:disabled)`).checked);
+    selectedTasks.forEach(task => {
+        fetch(`/tasks`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: task.id, text: task.text, completed: true })
+        })
+        .then(() => {
+            task.completed = true;
+            renderTasks();
+        });
+    });
+}
+
+function toggleComplete(checkbox, taskId) {
+    const task = tasks.find(t => t.id === taskId);
+    if (task) {
+        fetch(`/tasks`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: taskId, text: task.text, completed: checkbox.checked })
+        })
+        .then(() => {
+            task.completed = checkbox.checked;
+            renderTasks();
+        });
+    }
+}
+
+function editTask(taskId, currentText) {
+    const newTaskText = prompt('Edit Task', currentText);
+    if (newTaskText) {
+        fetch(`/tasks`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: taskId, text: newTaskText, completed: false })
+        })
+        .then(() => {
+            const task = tasks.find(t => t.id === taskId);
+            if(task) {
+                task.text = newTaskText;
+                renderTasks();
+            }
+        });
+    }
+}
+
+function searchTasks() {
+    renderTasks();
+}
+
+function toggleHamburger() {
+    document.querySelector('.hamburger-lists').classList.toggle('show');
+}
+
+function updateHamburger() {
+    const completedList = document.getElementById('completed-list');
+    const incompleteList = document.getElementById('incomplete-list');
+    completedList.innerHTML = '';
+    incompleteList.innerHTML = '';
+
+    tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.textContent = task.text;
+        if (task.completed) {
+            completedList.appendChild(li);
+        } else {
+            incompleteList.appendChild(li);
+        }
+    });
+
+    completedList.style.display = 'block';
+    incompleteList.style.display = 'block';
+}
+
+function fetchTasks() {
+    fetch('/tasks')
+        .then(response => response.json())
+        .then(data => {
+            tasks = data;
+            renderTasks();
+        });
+}
+
+fetchTasks();
+
+----------------------------------------------------------------------------------------------------------------
+
+//server.js
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const { Pool } = require('pg');
+const url = require('url');
+
+const pool = new Pool({
+  user: 'postgres', // Replace with your PostgreSQL username
+  host: 'localhost',
+  database: 'updatedb', // Updated database name
+  password: 'postgres', // Replace with your PostgreSQL password
+  port: 5432,
+});
+
+const server = http.createServer(async (req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  const pathname = parsedUrl.pathname;
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
+  if (pathname === '/') {
+    // Serve index.html
+    fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Error loading index.html');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      }
+    });
+  } else if (pathname === '/script.js') {
+    // Serve script.js
+    fs.readFile(path.join(__dirname, 'script.js'), (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Error loading script.js');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(data);
+      }
+    });
+  } else if (pathname === '/tasks') {
+    // Handle API requests
+    if (req.method === 'GET') {
+      try {
+        const result = await pool.query('SELECT * FROM updatetable'); // Updated table name
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(result.rows));
+      } catch (err) {
+        console.error(err);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Internal Server Error' }));
+      }
+    } else if (req.method === 'POST') {
+      let body = '';
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+
+      req.on('end', async () => {
+        try {
+          const { text, completed } = JSON.parse(body);
+          const result = await pool.query(
+            'INSERT INTO updatetable (text, completed) VALUES ($1, $2) RETURNING *', // Updated table name
+            [text, completed]
+          );
+          res.writeHead(201, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(result.rows[0]));
+        } catch (err) {
+          console.error(err);
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid Request' }));
+        }
+      });
+    } else if (req.method === 'PUT') {
+        let body = '';
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', async () => {
+            try {
+                const { id, text, completed } = JSON.parse(body);
+                const result = await pool.query(
+                    'UPDATE updatetable SET text = $1, completed = $2 WHERE id = $3 RETURNING *', // Updated table name
+                    [text, completed, id]
+                );
+                if (result.rows.length === 0) {
+                    res.writeHead(404, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Task not found' }));
+                    return;
+                }
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(result.rows[0]));
+            } catch (err) {
+                console.error(err);
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Invalid Request' }));
+            }
+        });
+    } else if (req.method === 'DELETE') {
+        const id = parsedUrl.query.id;
+        if (!id) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Missing task ID' }));
+            return;
+        }
+        try {
+            const result = await pool.query('DELETE FROM updatetable WHERE id = $1 RETURNING *', [id]); //Updated table name
+            if (result.rows.length === 0) {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Task not found' }));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Task deleted' }));
+        } catch (err) {
+            console.error(err);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Internal Server Error' }));
+        }
+    } else {
+        res.writeHead(405, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Method Not Allowed' }));
+    }
+  } else {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Not Found' }));
+  }
+});
+
+const port = 3007;
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
+--------------------------------------------------------------------------------------------------------------
